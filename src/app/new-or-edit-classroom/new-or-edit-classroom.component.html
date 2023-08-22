@@ -1,0 +1,29 @@
+<div mat-dialog-title>
+  <h1>Classroom Form</h1>
+</div>
+<form [formGroup]="formClassrooms" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Classroom Name</mat-label>
+        <input matInput type="text" placeholder="Name of Class" formControlName="nameOfClass">
+      </mat-form-field>
+      <!-- Example: Grade Dropdown -->
+      <mat-form-field appearance="outline">
+        <mat-label>Grade</mat-label>
+        <mat-select formControlName="grade">
+          <mat-option *ngFor="let grade of grades" [value]="grade">
+            {{ grade.nameGrade }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="button" (click)="addClassroomGroup()">
+      Add Classroom
+    </button>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </div>
+</form>

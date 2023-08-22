@@ -5,13 +5,15 @@ import {StudentComponent} from "./student/student.component";
 import {HomeComponent} from "./components/home/home.component";
 import {GradeComponent} from "./grade/grade.component";
 import {NewGradeComponent} from "./new-grade/new-grade.component";
+import {ClassroomComponent} from "./classroom/classroom.component";
+import {SectionComponent} from "./section/section.component";
 
 
 let routes : Routes = [
   {path : 'student',component : StudentComponent},
   { path: 'home', component: HomeComponent },
-  // { path: 'attendance', component: AttendanceListComponent },
-  // { path: 'classrooms', component: ClassroomListComponent },
+  { path: 'sections', component: SectionComponent },
+  { path: 'classrooms', component: ClassroomComponent },
   // { path: 'genders', component: GenderListComponent },
   { path: 'grades', component: GradeComponent },
   { path: 'new-grade', component: NewGradeComponent}
