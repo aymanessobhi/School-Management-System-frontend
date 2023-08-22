@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {StudentComponent} from "./student/student.component";
 import {HomeComponent} from "./components/home/home.component";
 import {GradeComponent} from "./grade/grade.component";
+import {NewGradeComponent} from "./new-grade/new-grade.component";
 
 
 let routes : Routes = [
@@ -12,8 +13,8 @@ let routes : Routes = [
   // { path: 'attendance', component: AttendanceListComponent },
   // { path: 'classrooms', component: ClassroomListComponent },
   // { path: 'genders', component: GenderListComponent },
-  { path: 'grades', component: GradeComponent }
-  // { path: 'sections', component: SectionListComponent },
+  { path: 'grades', component: GradeComponent },
+  { path: 'new-grade', component: NewGradeComponent}
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@ import {Grade} from "../models/grade.model";
   providedIn: 'root'
 })
 export class GradeService {
-  private apiUrl = 'http://localhost:8080/api/grades'; // Replace with your API URL
+  private apiUrl = 'http://localhost:8080/api/grades';
 
   constructor(private http: HttpClient) {}
 
@@ -18,5 +18,17 @@ export class GradeService {
   getGradeById(id: number): Observable<Grade> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Grade>(url);
+  }
+
+  saveGrade(grade: Grade) :Observable<Grade>{
+    return this.http.post<Grade>(this.apiUrl,grade);
+  }
+
+  updateGrade(id:number, data:Grade) :Observable<Grade>{
+    return this.http.patch<Grade>(`${this.apiUrl}/${id}`,data);
+  }
+
+  deleteGrade(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

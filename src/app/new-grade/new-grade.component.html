@@ -1,0 +1,22 @@
+<div mat-dialog-title>
+  <h1>Grade Form</h1>
+</div>
+<form [formGroup]="formGrade" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Grade Name</mat-label>
+        <input matInput type="text" placeholder="Name Grade" formControlName="nameGrade">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="description" formControlName="notes">
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </div>
+</form>
+

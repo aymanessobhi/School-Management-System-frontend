@@ -52,6 +52,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GradeComponent } from './grade/grade.component';
+import { NewGradeComponent } from './new-grade/new-grade.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ClassroomComponent } from './classroom/classroom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +64,8 @@ import { GradeComponent } from './grade/grade.component';
     DashboardComponent,
     SidebarComponent,
     GradeComponent,
+    NewGradeComponent,
+    ClassroomComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +114,8 @@ import { GradeComponent } from './grade/grade.component';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    MatDividerModule
+    MatDividerModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

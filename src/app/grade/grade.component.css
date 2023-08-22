@@ -1,15 +1,17 @@
-*{
-  margin: 0;
-}
-table {
-  width: 100%;
-  background-color: #d2cac0;
-}
-.mat-elevation-z8,
-.mat-elevation-z8 .mat-cell {
-  color: black;
-}
-.spacer {
+.example-spacer {
   flex: 1 1 auto;
+}
+
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1348px;}
+mat-form-field {
+  width: 100%;
+}
+
+.action {
+  display: flex;
+  gap: 5px;
 }
 
