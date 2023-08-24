@@ -1,1 +1,33 @@
-<p>new-or-edit-section works!</p>
+<div mat-dialog-title>
+  <h1>Section Form</h1>
+</div>
+<form [formGroup]="formSections" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Section Name</mat-label>
+        <input matInput type="text" placeholder="Section Name" formControlName="name_section">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Grade</mat-label>
+        <mat-select (selectionChange)="selectedType($event)" formControlName="grade">
+          <mat-option *ngFor="let grade of grades" [value]="grade.id">
+            {{ grade.nameGrade }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Classroom</mat-label>
+        <mat-select formControlName="myClass">
+          <mat-option *ngFor="let classroom of classrooms" [value]="classroom.id">
+            {{ classroom.nameOfClass }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </div>
+</form>
