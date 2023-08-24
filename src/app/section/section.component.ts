@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +10,7 @@ import { Grade } from '../models/grade.model';
 import { Section } from '../models/section.model';
 import { NewOrEditSectionComponent } from '../new-or-edit-section/new-or-edit-section.component';
 import {Classroom} from "../models/classroom.model";
+import {debounceTime, fromEvent} from "rxjs";
 
 @Component({
   selector: 'app-section',
@@ -26,6 +27,7 @@ export class SectionComponent implements OnInit {
     'ID',
     'nameOfSection',
     'classroom',
+    'status',
     'actions',
   ];
   dataSource: MatTableDataSource<Section>;
@@ -74,19 +76,30 @@ export class SectionComponent implements OnInit {
     // Implement the delete functionality
   }
 
-  applyFilter($event: KeyboardEvent) {
-    const filterValue = ($event.target as HTMLInputElement).value;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   openEditForm(row: any) {
     // Implement the edit functionality
   }
 
-  deleteSection(id: any) {
-    // Implement the delete section functionality
+  deleteSection(id: number) {
+    this.sectionService.deleteSection(id).subscribe({
+      next: (res) => {
+        // this._coreService.openSnackBar('Grade deleted!', 'done');
+        this.sectionsByGrade.forEach((gradeSection) => {
+          gradeSection.sections = gradeSection.sections.filter(section => section.id !== id);
+        });
+      },
+      error: console.log,
+    });
   }
-
   loadGrades() {
     this.gradeService.getAllGrades().subscribe(
       (grades) => {
@@ -98,6 +111,9 @@ export class SectionComponent implements OnInit {
         console.error('Error loading grades:', error);
       }
     );
+  }
+  handleStatusSection(){
+
   }
 
   // Group sections by grade
@@ -112,4 +128,5 @@ export class SectionComponent implements OnInit {
     console.log(this.sectionsByGrade);
     return sectionsByGrade;
   }
+
 }

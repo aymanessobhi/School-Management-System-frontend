@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Grade} from "../models/grade.model";
 import {Classroom} from "../models/classroom.model";
 import {GradeService} from "../services/grade.service";
@@ -31,11 +31,11 @@ export class NewOrEditSectionComponent implements OnInit{
               @Inject(MAT_DIALOG_DATA) public data : any
               ) {
     this.formSections = this.fb.group({
-      name_section : this.fb.control(''),
-      grade : this.fb.control(null),
-      myClass : this.fb.control(null)
+      name_section: ['', Validators.required],
+      grade: [null, Validators.required],
+      myClass: [null, Validators.required],
+      status: ['active', Validators.required]
     })
-
   }
 
   ngOnInit(): void {
@@ -45,11 +45,9 @@ export class NewOrEditSectionComponent implements OnInit{
   onFormSubmit() {
     if (this.formSections.valid) {
       const sectionData = this.formSections.value;
-
       // Convert the grade and myClass IDs to objects with the expected structure
       sectionData.grade = { id: sectionData.grade };
       sectionData.myClass = { id: sectionData.myClass };
-
       if (this.data) {
         this.sectionService.updateSection(this.data.id, sectionData)
           .subscribe({
@@ -63,6 +61,7 @@ export class NewOrEditSectionComponent implements OnInit{
       } else {
         this.sectionService.createSection(sectionData).subscribe({
           next: (val: any) => {
+            this.loadGrades()
             this.dialogRef.close(true);
           },
           error: (err: any) => {

@@ -6,4 +6,5 @@ export interface Section {
   name_section: string,
   grade: Grade,
   myClass: Classroom,
+  status: string,
 }
