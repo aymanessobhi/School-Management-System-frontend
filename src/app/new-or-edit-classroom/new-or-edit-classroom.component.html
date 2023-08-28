@@ -12,7 +12,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Grade</mat-label>
         <mat-select formControlName="grade">
-          <mat-option *ngFor="let grade of grades" [value]="grade">
+          <mat-option *ngFor="let grade of grades" [value]="grade.id">
             {{ grade.nameGrade }}
           </mat-option>
         </mat-select>

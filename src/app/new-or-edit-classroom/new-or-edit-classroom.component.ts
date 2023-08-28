@@ -27,12 +27,18 @@ export class NewOrEditClassroomComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.formClassrooms.patchValue(this.data);
-    this.loadGrades()
+    if (this.data) {
+      this.formClassrooms.patchValue({
+        nameOfClass: this.data.nameOfClass,
+        grade: this.data.grade.id
+      });
+      this.loadGrades();
+    }
+    this.loadGrades();
   }
-
   onFormSubmit() {
     if (this.formClassrooms.valid) {
+      this.formClassrooms.value.grade = {id : this.formClassrooms.value.grade}
       if (this.data) {
         this.classroomService.updateClassroom(this.data.id, this.formClassrooms.value)
           .subscribe({
@@ -64,10 +70,6 @@ export class NewOrEditClassroomComponent implements OnInit{
         console.error('Error loading grades:', error);
       }
     );
-  }
-
-  removeClassroomGroup(i: any) {
-
   }
 
   addClassroomGroup() {

@@ -9,6 +9,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {NewGradeComponent} from "../new-grade/new-grade.component";
+import {T} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-section-list',
@@ -99,4 +100,11 @@ export class SectionListComponent implements OnInit{
       },
     });
   }
+
+  applyFilter(grade: Grade, event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceMap[grade.id].filter = filterValue.trim().toLowerCase();
+    this.dataSourceMap[grade.id].paginator?.firstPage();
+  }
+
 }

@@ -23,6 +23,10 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 <!--      <div *ngFor="let section of grade.sections">-->
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter(grade,$event)" placeholder="filter for sections" #input>
+      </mat-form-field>
       <ng-container>
         <table *ngIf="dataSourceMap[grade.id]" mat-table [dataSource]="dataSourceMap[grade.id]" class="mat-elevation-z2" matSort>
             <ng-container matColumnDef="nameOfSection">
