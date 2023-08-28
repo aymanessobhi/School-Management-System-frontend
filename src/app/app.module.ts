@@ -58,6 +58,7 @@ import { ClassroomComponent } from './classroom/classroom.component';
 import { NewOrEditClassroomComponent } from './new-or-edit-classroom/new-or-edit-classroom.component';
 import { SectionComponent } from './section/section.component';
 import { NewOrEditSectionComponent } from './new-or-edit-section/new-or-edit-section.component';
+import { SectionListComponent } from './section-list/section-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { NewOrEditSectionComponent } from './new-or-edit-section/new-or-edit-sec
     NewOrEditClassroomComponent,
     SectionComponent,
     NewOrEditSectionComponent,
+    SectionListComponent,
   ],
   imports: [
     BrowserModule,

@@ -21,8 +21,6 @@ export class NewOrEditSectionComponent implements OnInit{
   grades : Grade[] = [];
   classrooms: Classroom[] = [];
   sections :Section[]=[];
-  selectedGrade !: any[];
-
   constructor(private classroomService: ClassroomService,
               private gradeService : GradeService,
               private sectionService : SectionService,
@@ -34,11 +32,20 @@ export class NewOrEditSectionComponent implements OnInit{
       name_section: ['', Validators.required],
       grade: [null, Validators.required],
       myClass: [null, Validators.required],
-      status: ['active', Validators.required]
+      status: ['', Validators.required]
     })
   }
-
   ngOnInit(): void {
+    if (this.data) {
+      this.formSections.patchValue({
+        name_section: this.data.name_section,
+        status: this.data.status,
+        grade: this.data.grade.id,   // Assuming that grade is an object with an 'id' property
+        myClass: this.data.myClass.id   // Assuming that myClass is an object with an 'id' property
+      });
+      this.loadGrades();
+      this.loadClassroomsByGradeId(this.data.grade.id);
+    }
     this.loadGrades();
   }
 

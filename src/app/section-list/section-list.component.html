@@ -1,0 +1,86 @@
+<div *ngIf="grades?.length==0">
+  <h4>No Grade found</h4>
+  <h4>Create a new Grade to start :-)!</h4>
+</div>
+<mat-toolbar color="primary">
+  <span>Sections</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openAddEditSectionForm()">
+    ADD Section
+  </button>
+</mat-toolbar>
+
+<div *ngFor="let grade of grades">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{grade.nameGrade}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{grade.notes}}
+          <label>number of sections : {{grade.sections?.length}}</label>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+<!--      <div *ngFor="let section of grade.sections">-->
+      <ng-container>
+        <table *ngIf="dataSourceMap[grade.id]" mat-table [dataSource]="dataSourceMap[grade.id]" class="mat-elevation-z2" matSort>
+            <ng-container matColumnDef="nameOfSection">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Section Name</th>
+              <td mat-cell *matCellDef="let section">{{ section.name_section }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="classroom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>classroom</th>
+              <td mat-cell *matCellDef="let section">{{ section.myClass.nameOfClass }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+              <td mat-cell *matCellDef="let section">{{ section.status }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+              <td mat-cell *matCellDef="let section">
+                <button mat-icon-button (click)="openEditForm(section)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteSection(section.id,section.grade.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let section; columns: displayedColumns;"></tr>
+          </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </ng-container>
+
+<!--        <app-section-element [section]="section" [grade]="grade"></app-section-element>-->
+<!--        <mat-card>-->
+<!--          <mat-card-header>-->
+<!--            <mat-card-title>-->
+<!--              {{section.name_section}}-->
+<!--            </mat-card-title>-->
+<!--          </mat-card-header>-->
+<!--          <mat-card-content>-->
+<!--            <p>-->
+<!--              {{section.status}}-->
+<!--            </p>-->
+<!--          </mat-card-content>-->
+<!--          <mat-card-actions>-->
+<!--            <div style="float: right;">-->
+<!--              <button mat-button (click) = "editSection(section.id)">-->
+<!--                <mat-icon>edit</mat-icon>-->
+<!--              </button>-->
+<!--              <button mat-button (click) = "deleteSection(section.id)">-->
+<!--                <mat-icon>trash</mat-icon>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </mat-card-actions>-->
+<!--        </mat-card>-->
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

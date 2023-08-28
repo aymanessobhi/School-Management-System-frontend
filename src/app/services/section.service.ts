@@ -8,7 +8,7 @@ import {Section} from "../models/section.model";
 })
 export class SectionService {
 
-  private apiUrl = 'http://localhost:8080/api/sections';
+  private apiUrl = 'http://localhost:8081/api/sections';
 
   constructor(private http: HttpClient) { }
 
@@ -27,11 +27,14 @@ export class SectionService {
 
   updateSection(id : number,section: Section): Observable<Section> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put<Section>(url, section);
+    return this.http.patch<Section>(url, section);
   }
 
   deleteSection(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
+  }
+  getAllSectionsByGrade(id: number) : Observable<Section[]> {
+    return this.http.get<Section[]>(`${this.apiUrl}/grade=${id}`);
   }
 }

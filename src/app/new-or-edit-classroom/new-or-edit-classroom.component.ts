@@ -27,7 +27,8 @@ export class NewOrEditClassroomComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loadGrades();
+    this.formClassrooms.patchValue(this.data);
+    this.loadGrades()
   }
 
   onFormSubmit() {

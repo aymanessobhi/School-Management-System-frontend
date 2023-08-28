@@ -7,7 +7,7 @@ import {Grade} from "../models/grade.model";
   providedIn: 'root'
 })
 export class GradeService {
-  private apiUrl = 'http://localhost:8080/api/grades';
+  private apiUrl = 'http://localhost:8081/api/grades';
 
   constructor(private http: HttpClient) {}
 
