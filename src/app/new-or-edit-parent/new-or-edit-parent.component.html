@@ -1,0 +1,106 @@
+<mat-dialog-content>
+  <mat-horizontal-stepper>
+    <!-- Step 1: Father Information -->
+    <mat-step [stepControl]="parentForm1">
+      <form [formGroup]="parentForm1">
+        <h2>Father Information</h2>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="nameFather" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="National ID" formControlName="nationalIdFather" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Passport ID" formControlName="passportIdFather">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phone" formControlName="phoneFather" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Job" formControlName="jobFather">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nationality</mat-label>
+          <mat-select formControlName="nationalityFather">
+            <mat-option *ngFor="let nationality of nationalities" [value]="nationality">
+              {{ nationality.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Blood Type</mat-label>
+          <mat-select formControlName="bloodTypeFather">
+            <mat-option *ngFor="let bloodType of bloodTypes" [value]="bloodType">
+              {{ bloodType.nameBlood }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Religion</mat-label>
+          <mat-select formControlName="religionFather">
+            <mat-option *ngFor="let religion of religions" [value]="religion">
+              {{ religion.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="addressFather">
+        </mat-form-field>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Mother Information -->
+    <mat-step [stepControl]="parentForm2">
+      <form [formGroup]="parentForm2">
+        <h2>Mother Information</h2>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="nameMother" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="National ID" formControlName="nationalIdMother" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Passport ID" formControlName="passportIdMother">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phone" formControlName="phoneMother" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Job" formControlName="jobMother">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nationality</mat-label>
+          <mat-select formControlName="nationalityMother">
+            <mat-option *ngFor="let nationality of nationalities" [value]="nationality">
+              {{ nationality.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Blood Type</mat-label>
+          <mat-select formControlName="bloodTypeMother">
+            <mat-option *ngFor="let bloodType of bloodTypes" [value]="bloodType">
+              {{ bloodType.nameBlood }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Religion</mat-label>
+          <mat-select formControlName="religionMother">
+            <mat-option *ngFor="let religion of religions" [value]="religion">
+              {{ religion.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="addressMother">
+        </mat-form-field>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" (click)="onFormSubmit()">Save</button>
+</mat-dialog-actions>

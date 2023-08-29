@@ -56,9 +56,10 @@ import { NewGradeComponent } from './new-grade/new-grade.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { ClassroomComponent } from './classroom/classroom.component';
 import { NewOrEditClassroomComponent } from './new-or-edit-classroom/new-or-edit-classroom.component';
-import { SectionComponent } from './section/section.component';
 import { NewOrEditSectionComponent } from './new-or-edit-section/new-or-edit-section.component';
 import { SectionListComponent } from './section-list/section-list.component';
+import { ParentComponent } from './parent/parent.component';
+import { NewOrEditParentComponent } from './new-or-edit-parent/new-or-edit-parent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,9 +72,10 @@ import { SectionListComponent } from './section-list/section-list.component';
     NewGradeComponent,
     ClassroomComponent,
     NewOrEditClassroomComponent,
-    SectionComponent,
     NewOrEditSectionComponent,
     SectionListComponent,
+    ParentComponent,
+    NewOrEditParentComponent,
   ],
   imports: [
     BrowserModule,

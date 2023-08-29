@@ -6,14 +6,14 @@ import {HomeComponent} from "./components/home/home.component";
 import {GradeComponent} from "./grade/grade.component";
 import {NewGradeComponent} from "./new-grade/new-grade.component";
 import {ClassroomComponent} from "./classroom/classroom.component";
-import {SectionComponent} from "./section/section.component";
 import {SectionListComponent} from "./section-list/section-list.component";
+import {ParentComponent} from "./parent/parent.component";
 
 
 let routes : Routes = [
   {path : 'student',component : StudentComponent},
   { path: 'home', component: HomeComponent },
-  // { path: 'sections', component: SectionComponent },
+  { path: 'parents', component: ParentComponent },
   { path: 'classrooms', component: ClassroomComponent },
   { path: 'sections', component: SectionListComponent},
   { path: 'grades', component: GradeComponent },

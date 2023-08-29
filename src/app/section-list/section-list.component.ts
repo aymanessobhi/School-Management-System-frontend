@@ -8,8 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {NewGradeComponent} from "../new-grade/new-grade.component";
-import {T} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-section-list',
@@ -106,5 +104,14 @@ export class SectionListComponent implements OnInit{
     this.dataSourceMap[grade.id].filter = filterValue.trim().toLowerCase();
     this.dataSourceMap[grade.id].paginator?.firstPage();
   }
-
+  handleStatusSection(section: Section) {
+    this.sectionService.statusSection(section).subscribe({
+      next: updatedStatus => {
+        section.status = section.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
 }
