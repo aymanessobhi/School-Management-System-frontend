@@ -60,6 +60,7 @@ import { NewOrEditSectionComponent } from './new-or-edit-section/new-or-edit-sec
 import { SectionListComponent } from './section-list/section-list.component';
 import { ParentComponent } from './parent/parent.component';
 import { NewOrEditParentComponent } from './new-or-edit-parent/new-or-edit-parent.component';
+import { ViewParentDetailsComponent } from './view-parent-details/view-parent-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import { NewOrEditParentComponent } from './new-or-edit-parent/new-or-edit-paren
     SectionListComponent,
     ParentComponent,
     NewOrEditParentComponent,
+    ViewParentDetailsComponent,
   ],
   imports: [
     BrowserModule,

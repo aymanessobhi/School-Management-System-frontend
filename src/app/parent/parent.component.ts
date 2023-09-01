@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ParentService} from "../services/parent.service";
 import {NewOrEditParentComponent} from "../new-or-edit-parent/new-or-edit-parent.component";
 import {Parent} from "../models/parent.model";
+import {ViewParentDetailsComponent} from "../view-parent-details/view-parent-details.component";
 
 @Component({
   selector: 'app-parent',
@@ -19,8 +20,6 @@ export class ParentComponent implements OnInit{
       'nameMother',
       'phoneFather',
       'phoneMother',
-      'nationalIdFather',
-      'nationalIdMother',
       'action'
     ];
     dataSource!: MatTableDataSource<any>;
@@ -115,6 +114,20 @@ export class ParentComponent implements OnInit{
       );
     }
   }
+  viewDetails(parent: Parent) {
+    // You can implement logic to display the details and files for the selected parent.
+    // This can be done using a dialog or by navigating to a new page.
+    // For example, you can create a new component for displaying the details.
+    // Here's an example of how to open a dialog:
 
+    const dialogRef = this._dialog.open(ViewParentDetailsComponent, {
+      data: parent, // Pass the selected parent data to the dialog
+      width: '500px', // Set the dialog width as needed
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Handle any actions after the dialog is closed if needed
+    });
+  }
 
 }

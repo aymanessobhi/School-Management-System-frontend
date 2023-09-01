@@ -157,10 +157,4 @@ export class NewOrEditParentComponent implements OnInit{
       }
     }
   }
-  onAttachmentChange(event: any) {
-    const file = event.target.files[0];
-    this.parentForm.patchValue({ attachment: file });
-    this.selectedAttachment = file;
-  }
-
 }
