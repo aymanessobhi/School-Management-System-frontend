@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Parent} from "../models/parent.model";
+import {Nationality} from "../models/Nationality.model";
+import {BloodType} from "../models/BloodType.model";
+import {Religion} from "../models/religion.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,15 +34,23 @@ export class ParentService {
     return this.http.delete<void>(`${this.apiUrl}/api/parents/${id}`);
   }
 
-  getNationalities() {
-
+  getNationalities():Observable<Nationality[]> {
+    return this.http.get<Nationality[]>(`${this.apiUrl}/api/nationalities`)
   }
 
-  getBloodTypes() {
-
+  getBloodTypes() :Observable<BloodType[]> {
+    return this.http.get<BloodType[]>(`${this.apiUrl}/api/typeBloods`)
   }
 
-  getReligions() {
+  getReligions() :Observable<Religion[]> {
+    return this.http.get<Religion[]>(`${this.apiUrl}/api/religions`)
+  }
+  uploadParentFiles(parentId: number, files: File[]): Observable<any> {
+    const formData = new FormData();
+    files.forEach((file, index) => {
+      formData.append(`files`, file); // Use the correct parameter name 'files'
+    });
 
+    return this.http.post(`${this.apiUrl}/api/parents/${parentId}/upload`, formData);
   }
 }

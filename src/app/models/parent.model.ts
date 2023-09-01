@@ -24,4 +24,5 @@ export interface Parent {
   bloodTypeMother: BloodType;
   religionMother: Religion;
   addressMother: string;
+  files: File[];
 }
