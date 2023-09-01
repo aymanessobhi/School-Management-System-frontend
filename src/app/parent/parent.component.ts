@@ -107,16 +107,14 @@ export class ParentComponent implements OnInit{
       const parentId = parent.id || 0; // Replace with actual parent ID
       this._parentService.uploadParentFiles(parentId, parent.files).subscribe(
         (response) => {
-          // File upload for the parent was successful
-          // Handle the response as needed
-          console.log('Files uploaded for parent', parent.id, response);
+          console.log('Response from server:', response);
         },
         (error) => {
-          // File upload for the parent failed, handle the error
           console.error('File upload error:', error);
         }
       );
     }
   }
+
 
 }

@@ -50,7 +50,13 @@ export class ParentService {
     files.forEach((file, index) => {
       formData.append(`files`, file); // Use the correct parameter name 'files'
     });
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post(`${this.apiUrl}/api/parents/${parentId}/upload`, formData);
+    // Use responseType: 'text' to indicate that you expect a non-JSON response
+    return this.http.post(`${this.apiUrl}/api/parents/${parentId}/upload`, formData, {
+      headers,
+      responseType: 'text' // Set the response type to text
+    });
   }
 }
