@@ -59,4 +59,8 @@ export class ParentService {
       responseType: 'text' // Set the response type to text
     });
   }
+  getFilesByParentId(parentId: number): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/api/parents/${parentId}/files`);
+  }
+
 }

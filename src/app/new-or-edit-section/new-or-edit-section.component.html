@@ -31,6 +31,15 @@
           <mat-option value="INACTIVE">Inactive</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Teachers</mat-label>
+        <mat-select formControlName="teachers" multiple>
+          <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+            {{ teacher.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
   </div>
   <div mat-dialog-actions class="action">

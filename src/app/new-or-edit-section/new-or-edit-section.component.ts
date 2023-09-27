@@ -10,6 +10,7 @@ import {Section} from "../models/section.model";
 import {Observable, switchMap} from "rxjs";
 import {MatSelectChange} from "@angular/material/select";
 import {trigger} from "@angular/animations";
+import {Teacher} from "../models/Teacher.model";
 
 @Component({
   selector: 'app-new-or-edit-section',
@@ -21,6 +22,8 @@ export class NewOrEditSectionComponent implements OnInit{
   grades : Grade[] = [];
   classrooms: Classroom[] = [];
   sections :Section[]=[];
+
+  teachers: Teacher[] = [];
   constructor(private classroomService: ClassroomService,
               private gradeService : GradeService,
               private sectionService : SectionService,
@@ -32,10 +35,25 @@ export class NewOrEditSectionComponent implements OnInit{
       name_section: ['', Validators.required],
       grade: [null, Validators.required],
       myClass: [null, Validators.required],
-      status: ['', Validators.required]
+      status: ['', Validators.required],
+      teachers: [[]],
     })
   }
   ngOnInit(): void {
+
+    this.teachers = [
+      {
+        id: 1,
+        email: 'teacher1@example.com',
+        password: 'password1',
+        name: 'Teacher 1',
+        specialization: { id: 1, name: 'Math' },
+        gender: { id: 1, name: 'Male' },
+        joiningDate: new Date('2022-01-01'),
+        address: '123 Main St',
+        sections: [], // Assuming an empty sections array for this example
+      }
+    ]
     if (this.data) {
       this.formSections.patchValue({
         name_section: this.data.name_section,
@@ -101,5 +119,28 @@ export class NewOrEditSectionComponent implements OnInit{
   selectedType(trigger: MatSelectChange) {
     const selectedGradeId = +trigger.value;
     this.loadClassroomsByGradeId(selectedGradeId);
+  }
+  addSection(sectionData: any, teacherIdsToAdd: number[]): void {
+    this.sectionService.createSection(sectionData).subscribe((section) => {
+      const sectionId = section.id;
+      this.sectionService.addTeachersToSection(sectionId, teacherIdsToAdd).subscribe(() => {
+        console.log(`Section with ID ${sectionId} created successfully.`);
+        console.log(`Teachers with IDs [${teacherIdsToAdd}] associated with the section.`);
+      }, (error) => {
+        console.error('Error associating teachers:', error);
+      });
+    }, (error) => {
+      console.error('Error creating section:', error);
+    });
+  }
+  updateSection(sectionId: number, sectionData: any, teacherIdsToAdd: number[], teacherIdsToRemove: number[]): void {
+    this.sectionService.updateSection(sectionId, sectionData).subscribe(() => {
+      this.sectionService.addTeachersToSection(sectionId, teacherIdsToAdd).subscribe(() => {
+        this.sectionService.removeTeachersFromSection(sectionId, teacherIdsToRemove).subscribe(() => {
+          // Section updated, teachers associated and disassociated successfully
+          // You can add any additional logic here
+        });
+      });
+    });
   }
 }

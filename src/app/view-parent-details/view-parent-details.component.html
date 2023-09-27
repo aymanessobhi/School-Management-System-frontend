@@ -1,1 +1,20 @@
-<p>view-parent-details works!</p>
+<!-- view-parent-details.component.html -->
+<h2>Parent Details</h2>
+<div>
+  <p><strong>ID:</strong> {{ parent.id }}</p>
+  <p><strong>Father's Name:</strong> {{ parent.nameFather }}</p>
+  <p><strong>Mother's Name:</strong> {{ parent.nameMother }}</p>
+  <p><strong>Father's Phone:</strong> {{ parent.phoneFather }}</p>
+  <p><strong>Mother's Phone:</strong> {{ parent.phoneMother }}</p>
+  <!-- Add more fields as needed -->
+
+  <!-- Display files if available -->
+  <div *ngIf="files.length > 0">
+    <h3>Files</h3>
+    <ul>
+      <li *ngFor="let fileName of files">
+        {{ fileName }}
+      </li>
+    </ul>
+  </div>
+</div>

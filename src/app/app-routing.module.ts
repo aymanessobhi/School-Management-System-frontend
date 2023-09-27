@@ -8,6 +8,7 @@ import {NewGradeComponent} from "./new-grade/new-grade.component";
 import {ClassroomComponent} from "./classroom/classroom.component";
 import {SectionListComponent} from "./section-list/section-list.component";
 import {ParentComponent} from "./parent/parent.component";
+import {TeacherComponent} from "./teacher/teacher.component";
 
 
 let routes : Routes = [
@@ -15,6 +16,7 @@ let routes : Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'parents', component: ParentComponent },
   { path: 'classrooms', component: ClassroomComponent },
+  { path: 'teachers', component: TeacherComponent },
   { path: 'sections', component: SectionListComponent},
   { path: 'grades', component: GradeComponent },
   { path: 'new-grade', component: NewGradeComponent}

@@ -115,11 +115,6 @@ export class ParentComponent implements OnInit{
     }
   }
   viewDetails(parent: Parent) {
-    // You can implement logic to display the details and files for the selected parent.
-    // This can be done using a dialog or by navigating to a new page.
-    // For example, you can create a new component for displaying the details.
-    // Here's an example of how to open a dialog:
-
     const dialogRef = this._dialog.open(ViewParentDetailsComponent, {
       data: parent, // Pass the selected parent data to the dialog
       width: '500px', // Set the dialog width as needed

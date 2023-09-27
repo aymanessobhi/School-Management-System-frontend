@@ -61,6 +61,8 @@ import { SectionListComponent } from './section-list/section-list.component';
 import { ParentComponent } from './parent/parent.component';
 import { NewOrEditParentComponent } from './new-or-edit-parent/new-or-edit-parent.component';
 import { ViewParentDetailsComponent } from './view-parent-details/view-parent-details.component';
+import { TeacherComponent } from './teacher/teacher.component';
+import { AddEditTeacherComponent } from './add-edit-teacher/add-edit-teacher.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +80,8 @@ import { ViewParentDetailsComponent } from './view-parent-details/view-parent-de
     ParentComponent,
     NewOrEditParentComponent,
     ViewParentDetailsComponent,
+    TeacherComponent,
+    AddEditTeacherComponent,
   ],
   imports: [
     BrowserModule,

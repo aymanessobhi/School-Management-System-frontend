@@ -7,7 +7,6 @@ import {Section} from "../models/section.model";
   providedIn: 'root'
 })
 export class SectionService {
-
   private apiUrl = 'http://localhost:8081/api/sections';
 
   constructor(private http: HttpClient) { }
@@ -39,5 +38,14 @@ export class SectionService {
       status: section.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
     };
     return this.http.patch<Section>(`${this.apiUrl}/${section.id}`, updatedSection);
+  }
+  addTeachersToSection(sectionId: number, teacherIds: number[]): Observable<any> {
+    const url = `${this.apiUrl}/${sectionId}/add-teachers`;
+    return this.http.post(url, teacherIds);
+  }
+  // Remove teachers from a section
+  removeTeachersFromSection(sectionId: number, teacherIds: number[]): Observable<any> {
+    const url = `${this.apiUrl}/${sectionId}/remove-teachers`;
+    return this.http.post(url, teacherIds);
   }
 }

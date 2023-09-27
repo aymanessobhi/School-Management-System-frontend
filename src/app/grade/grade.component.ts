@@ -59,7 +59,6 @@ export class GradeComponent implements OnInit{
     const dialogRef = this.dialog.open(NewGradeComponent, {
       data,
     });
-
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
